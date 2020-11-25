@@ -142,11 +142,29 @@
     .gap {
         margin: 18em;
     }
-    label {
-            display: inline-block;
-            width: 9.5em;
-            text-align: right;
-        }
+    .form-container {
+        display: flex;
+        padding-bottom: 5px;
+    }
+
+    #Sample .form-container {
+        width: 70%;
+    }
+
+    #Significance .form-container {
+        width: 100%;
+    }
+
+    .form-container > label:nth-of-type(1) {
+        flex: 1.3;
+    }
+    .form-container > label:nth-of-type(2) {
+        flex: 0.8;
+    }
+    .form-container > input, .form-container > select {
+        flex: 2;
+        margin-right: 20px;
+    }
 
 
 
@@ -177,18 +195,21 @@
         </h2>
         <br>
  <form id="Sample">
+     <div class="form-container">
      <label for="Control" class="tooltip">
         Control %
         <span class="tooltiptext">The expected percentage of instances among control group (e.g. percentage aware of a brand)</span>
      </label>
      <input type="number" id="Control" step="any" min=0 max=100 class="input">
-     <br>
+    </div>
+     <div class="form-container">
      <label for="Exposed" class="tooltip">
         Exposed %
         <span class="tooltiptext">The expected percentage of instances among exposed group (e.g. percentage aware of a brand)</span>
      </label>
      <input type="number" id="Exposed" step="any" min=0 max=100 class="input">
-     <br>
+    </div>
+     <div class="form-container">
      <label for="Confidence"  class="tooltip">
         Confidence Interval
         <span class="tooltiptext">Confidence interval at which you want the difference to be statistically significant (the higher the CI, the greater the sample required)</span>
@@ -204,7 +225,7 @@
     80%
 </option>
      </select>
-     <br>
+    </div>
 <input type="submit" value="Calculate" class="button">
  </form>
  <p id="Result">
@@ -219,6 +240,7 @@ Significance calculator
 </h2>
 <br>
 <form id="Significance">
+    <div class="form-container">
     <label for="ControlSample1"  class="tooltip">
         Control sample size
         <span class="tooltiptext">The number of respondents in your survey within the control group</span>
@@ -229,8 +251,9 @@ Significance calculator
         <span class="tooltiptext">The observed percentage of instances among control group (e.g. percentage aware of a brand)</span>
      </label>
      <input type="number" id="Control1" step="any" min=0 max=100 class="input">
-    <br>
+     </div>
 
+    <div class="form-container">
     <label for="ExposedSample1"  class="tooltip">
         Exposed sample size
         <span class="tooltiptext">The number of respondents in your survey within the exposed group</span>
@@ -241,7 +264,7 @@ Significance calculator
        <span class="tooltiptext">The observed percentage of instances among exposed group (e.g. percentage aware of a brand)</span>
     </label>
     <input type="number" id="Exposed1" step="any" min=0 max=100 class="input">
-    <br>
+    </div>
 <input type="submit" value="Calculate" class="button">
 </form>
 <p id="Result1">
