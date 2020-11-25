@@ -50,7 +50,7 @@
         font-size: 1em;
         flex-grow: 1;
         padding-bottom: 5em;
-        margin-bottom: 18em;
+        margin-bottom: 18em; /* On screen widths <800px, this leads to a *lot* of margin between the two calculators */
         margin-top: 4em;
         border-radius: 2em;
     }
@@ -219,6 +219,7 @@ Significance calculator
         Control %
         <span class="tooltiptext">The observed percentage of instances among control group (e.g. percentage aware of a brand)</span>
      </label>
+     <!-- This text box isn't vertically aligned with the one below - it would probably look neater if they were :) -->
      <input type="number" id="Control1" step="any" min=0 max=100 class="input">
     <br>
 
@@ -265,8 +266,11 @@ Significance calculator
             const sample_size = Math.ceil((((control*(1-control))+(exposed*(1-exposed)))/(Math.pow(control-exposed,2)))*(1.28+confidence))
             const result = document.getElementById("Result")
             if(control==exposed) {
+                // The error message should probably explain _why_ they can't be equal, what it means, and what the user should do?
                 show_result(result, `The percentages cannot be equal`, true);
             }
+            // Instead of writing the same code twice, you could write something like:
+            // sample_size = Math.max(100, sample_size)
             else if (sample_size<100) {
                 show_result(result, `The minimum sample size required per each bucket is <span class="answer-number">100</span>`, false);
             }
@@ -345,6 +349,7 @@ Significance calculator
             // else if(significance < 5) {
             //     show_result(result, `The difference is significant at <span class="answer-number">99%</span> confidence interval`, false);
             // }
+            // Again, rather than doing the same thing 3 times, you could just change the significance variable and do it once.
             else if(significance < 80 & significance >=5) {
                 show_result(result, `The difference is significant at <span class="answer-number">${significance}%</span> confidence interval`, false);
             }
